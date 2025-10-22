@@ -1,5 +1,13 @@
 # 🛡️ PhishShield Lite
 
+![GitHub stars](https://img.shields.io/github/stars/yugdabgar21/PhishShield?style=social)
+![GitHub forks](https://img.shields.io/github/forks/yugdabgar21/PhishShield?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/yugdabgar21/PhishShield?style=social)
+![License](https://img.shields.io/github/license/yugdabgar21/PhishShield)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![n8n](https://img.shields.io/badge/n8n-self--hosted-orange)
+![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red)
+
 **Free Phishing Detection Tool for Students**
 
 Built by MASTERxD (aka Yug Dabgar)
