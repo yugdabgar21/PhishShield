@@ -4,6 +4,8 @@
 
 Built by MASTERxD (aka Yug Dabgar)
 
+> 💡 **100% Self-Hosted** - Runs entirely on your local machine using self-hosted n8n. No cloud services, no data leaves your computer.
+
 ---
 
 ## What This Does
@@ -49,6 +51,26 @@ Output: **SAFE** or **MALICIOUS**
    - PhishStats advanced score (extra heuristics)
 3. **If any layer flags malicious** → instant Telegram alert is sent to the user  
 4. **Every scan result** (safe or malicious) is automatically logged to Airtable for auditing and reporting
+
+## Live Practical
+
+### Workflow Overview
+![PhishShield Workflow](docs/workflow-screenshot.png)
+
+1. **User submits URL** via a public web form  
+   ![Submission Form](docs/form-example.png)
+
+2. **Python script** checks four layers:
+   - Heuristics (IP addresses, `@` symbols, URL shorteners, excessive sub-domains)
+   - URLhaus live malware-URL database
+   - PhishStats basic risk score
+   - PhishStats advanced score (extra heuristics)
+
+3. **If any layer flags malicious** → instant Telegram alert is sent to the user  
+   ![Telegram Alert](docs/telegram-alert.png)
+
+4. **Every scan result** (malicious) is automatically logged to Airtable for auditing and reporting  
+   ![Airtable Logs](docs/airtable-log.png)
 
 ### License  
 MIT License - free for educational use.
