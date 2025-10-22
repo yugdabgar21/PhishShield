@@ -7,7 +7,7 @@ from datetime import datetime
 
 #Configuration
 # Replace with your actual Auth-Key from https://auth.abuse.ch/
-URLHAUS_AUTH_KEY = "f7aeec094c1201018a33b8175280d951a2f5a6b38fd8d86d"
+URLHAUS_AUTH_KEY = "ENTER YOUR AUTH KEY"
 
 # PhishStats API Configuration
 PHISHSTATS_API_BASE = "https://api.phishstats.info/api/phishing"
