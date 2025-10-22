@@ -1,0 +1,149 @@
+{
+  "name": "PhishShield Lite",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "PhishShield Lite",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Enter Your URL :",
+              "placeholder": "URL",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -224,
+        -112
+      ],
+      "id": "844efcfd-a707-40b0-9e64-473a59cebb7c",
+      "name": "On form submission",
+      "webhookId": "264a2edf-0f3d-44c0-beec-2353031f80dd"
+    },
+    {
+      "parameters": {
+        "command": "=python D:\\PhishShieldLite\\check_phish.py {{ $json['Enter Your URL :'] }}"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -112
+      ],
+      "id": "7dc62ef6-61c2-41d8-9e42-6837e06766bb",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef3c0f7e-1dae-4976-8d3e-727ab1e89480",
+              "leftValue": "={{ $json.stdout }}",
+              "rightValue": "MALICIOUS",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "b6374cf6-a080-4212-b189-fcb7a4901b4e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "1370385880",
+        "text": "=⚠️ *Phishing Alert!*\n\nThe URL you submitted is *MALICIOUS*:\n`{{ $('On form submission').item.json['Enter Your URL :'] }}`\n\nDo not enter any passwords or personal info!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -112
+      ],
+      "id": "64d4ce5e-914d-4d7b-a7c4-46f5c4e6249c",
+      "name": "Send a text message",
+      "webhookId": "d0494e46-d6db-47cf-b160-1dc609b7c5c2",
+      "credentials": {
+        "telegramApi": {
+          "id": "eCfPDcZKQ6KXCBb0",
+          "name": "PhishShieldAlert"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "decd8747-c7e5-48d5-bd55-ccf3a468b801",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ee7e57f6436e3ed12bda0d969808433ba8a6ae3125e6d3a27386de5935ffd4a4"
+  },
+  "id": "cgEeJf5kUkK8PFn8",
+  "tags": []
+}
